@@ -66,7 +66,7 @@ class Register extends Component {
                 console.log(createdUser);
                 createdUser.user.updateProfile({
                     displayName: this.state.username,
-                    photoURL: 'http://gravatar.com/avatar/${md5(createdUser.user.email)}?d=identicon'
+                    photoURL: 'http://gravatar.com/avatar/${md5(createdUser.user.email)}?d=identicon',
                 })
                 .then(() => {
                     this.setState({ loading: false });  
@@ -96,7 +96,7 @@ class Register extends Component {
         <Grid textAlign="center" verticalAlign="middle" className="app">
             <Grid.Column style={{ maxWidth: 450 }}>
                 <Header as="h2" icon color="orange" textAlign="center">
-                    <Icon name="puzzle piece" color="orange" />
+                    <Icon name="cloud" color="orange" />
                     Register for Aidan's Dope Chat
                 </Header>
                 <Form onSubmit={this.handleSubmit} size="large">
