@@ -66,7 +66,7 @@ class Register extends Component {
                 console.log(createdUser);
                 createdUser.user.updateProfile({
                     displayName: this.state.username,
-                    photoURL: 'http://gravatar.com/avatar/${md5(createdUser.user.email)}?d=identicon',
+                    photoURL: `http://gravatar.com/avatar/${md5(createdUser.user.email)}?d=identicon`,
                 })
                 .then(() => {
                     this.setState({ loading: false });  
@@ -95,8 +95,8 @@ class Register extends Component {
     return (
         <Grid textAlign="center" verticalAlign="middle" className="app">
             <Grid.Column style={{ maxWidth: 450 }}>
-                <Header as="h2" icon color="orange" textAlign="center">
-                    <Icon name="cloud" color="orange" />
+                <Header as="h2" icon color="blue" textAlign="center">
+                    <Icon name="cloud" color="blue" />
                     Register for Aidan's Dope Chat
                 </Header>
                 <Form onSubmit={this.handleSubmit} size="large">
@@ -106,7 +106,7 @@ class Register extends Component {
                         <Form.Input fluid name="password" icon="lock" iconPosition="left" placeholder="Password" onChange={this.handleChange} value={password} className={this.handleInputName(errors, 'password')} type="password" />
                         <Form.Input fluid name="passwordConfirmation" icon="repeat" iconPosition="left" placeholder="Password Confirmation" onChange={this.handleChange} value={passwordConfirmation} className={this.handleInputName(errors, 'password')} type="password" />
                         
-                        <Button disabled={loading} className={loading ? 'loading' : ''} color="orange" fluid size="large">Submit</Button>
+                        <Button disabled={loading} className={loading ? 'loading' : ''} color="blue" fluid size="large">Submit</Button>
                     </Segment>
                 </Form>
                 {errors.length > 0 && (
