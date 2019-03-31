@@ -107,7 +107,7 @@ class Register extends Component {
             <Grid.Column style={{ maxWidth: 450 }}>
                 <Header as="h2" icon color="blue" textAlign="center">
                     <Icon name="cloud" color="blue" />
-                    Register for Aidan's Dope Chat
+                    Register for Aidan's Chat
                 </Header>
                 <Form onSubmit={this.handleSubmit} size="large">
                     <Segment stacked>

@@ -56,7 +56,7 @@ class Login extends Component {
             <Grid.Column style={{ maxWidth: 450 }}>
                 <Header as="h2" icon color="violet" textAlign="center">
                     <Icon name="code branch" color="violet" />
-                    Register for Aidan's Dope Chat
+                    Login to Aidan's Chat
                 </Header>
                 <Form onSubmit={this.handleSubmit} size="large">
                     <Segment stacked>
