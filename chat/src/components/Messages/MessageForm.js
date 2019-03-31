@@ -136,7 +136,7 @@ class MessageForm extends React.Component {
                 <Input fluid name="message" className={errors.some(error => error.message.includes('message')) ? 'error' : ''} onChange={this.handleChange} value={message} style={{marginBottom: '0.7em'}} label={<Button icon={'add'} />} labelPosition='left' placeholder="Write your message" />
                     <Button.Group iconwidths="2">
                         <Button onClick={this.sendMessage} disabled={loading} color="orange" content="Add Reply" labelPosition="left" icon="edit" />
-                        <Button color="teal" onClick={this.openModal} content="Upload Media" labelPosition="right" icon="cloud upload" />
+                        <Button color="teal" disabled={uploadState === "uploading"} onClick={this.openModal} content="Upload Media" labelPosition="right" icon="cloud upload" />
                     </Button.Group>
                         <FileModal modal={modal} uploadFile={this.uploadFile} closeModal={this.closeModal}/>
                         <ProgressBar uploadState={uploadState} percentUploaded={percentUploaded} />
