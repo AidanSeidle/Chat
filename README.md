@@ -1,3 +1,2 @@
 # Chat
-karthicc made me do it to em
-karthicc has private repository what is he hiding?
+Chat Application using the React language and MERN stack
