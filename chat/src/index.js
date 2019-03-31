@@ -6,27 +6,44 @@ import Register from './components/Auth/Register';
 import * as serviceWorker from './serviceWorker';
 import firebase from './firebase';
 
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, withRouter} from 'react-router-dom';
 
+import { createStore } from 'redux';
+import { Provider, connect } from 'react-redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import rootReducer from "./reducers";
 import 'semantic-ui-css/semantic.min.css';
+import {setUser} from './actions';
+import Spinner from './Spinner';
+
+const store = createStore(rootReducer, composeWithDevTools());
 
 class Root extends React.Component{
+    componentDidMount() {
+        console.log(this.props.isLoading);
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                this.props.setUser(user);
+                this.props.history.push('/');
+            }
+        })
+    }
     render() {
-        return (
-            <Router>
+        return this.props.isLoading ? <Spinner /> : (
                 <Switch>
                     <Route exact path="/" component={App} />
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                 </Switch>
-            </Router>
         );
     }
 }
 
-ReactDOM.render(<Root />, document.getElementById('root'));
+const mapStateToProps = state => ({
+    isLoading: state.user.isLoading
+});
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+const RootWithAuth = withRouter(connect(mapStateToProps, {setUser})(Root));
+
+ReactDOM.render(<Provider store={store}><Router><RootWithAuth /></Router></Provider>, document.getElementById('root'));
 serviceWorker.unregister();
